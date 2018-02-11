@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
+import './src/style.scss'
 
 class Main extends Component {
 
