@@ -20,7 +20,8 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [{
+        use: [
+        {
           loader: 'style-loader'
         }, 
         {
@@ -28,6 +29,13 @@ module.exports = {
         },
         {
           loader: 'sass-loader'
+        }]
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+        {
+          loader: 'file-loader'
         }]
       }
     ]
