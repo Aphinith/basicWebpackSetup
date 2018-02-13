@@ -11,11 +11,25 @@ class Main extends Component {
   render() {
     return(
       <div>
-        Show me a photo gallery!
-        <img src={drStrangeJpg} className="pic"/>
-        <img src={hamtaroPng} className="pic" />
-        <img src={hulkGif} className="pic" />
-        <img src={anchorSvg} className="pic" />
+        <div>
+          Show me a photo gallery!
+        </div>
+        <div>
+          <img src={drStrangeJpg} className="pic"/>
+          <p>This is a jpg file</p>
+        </div>
+        <div>
+          <img src={hamtaroPng} className="pic" />
+          <p>This is a png file</p>
+        </div>
+        <div>
+          <img src={hulkGif} className="pic" />
+          <p>This is a gif file</p>
+        </div>
+        <div>
+          <img src={anchorSvg} className="pic" />
+          <p>This is an svg file</p>
+        </div>
       </div>
     );
   }
