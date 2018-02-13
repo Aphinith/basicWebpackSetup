@@ -53,7 +53,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new ExtractTextPlugin('bundle[chunkhash].css'),
+    new ExtractTextPlugin('bundle.[chunkhash].css'),
     new HtmlWebpackPlugin({ title: 'Output Management' }),
   ]
 };
