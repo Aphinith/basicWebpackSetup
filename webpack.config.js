@@ -1,12 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const FileSystem = require('fs');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: './index.js',
   output: {
-    filename: 'bundle.[hash].js',
+    filename: 'bundle.[chunkhash].js',
     path: path.resolve(__dirname, 'dist')
   },
 
@@ -51,24 +52,8 @@ module.exports = {
     colors: true
   },
   plugins: [
-    new ExtractTextPlugin('css/[hash]bundle.css'),
-    // below code is meant to overwrite the script tag to use the new bundled file, but is not working properly
-    function() {
-      this.plugin("done", function(statsData) {
-        var stats = statsData.toJson();
-        if (!stats.errors.length) {
-          var htmlFileName = "index.html";
-          var html = FileSystem.readFileSync(path.join(__dirname, 'dist', htmlFileName), "utf8");
-
-          var htmlOutput = html.replace(
-              /<script\s+src=(["'])(.+?)bundle\.js\1/i,
-              "<script src=$1$2" + stats.assetsByChunkName.main[0] + "$1");
-
-          FileSystem.writeFileSync(
-              path.join(__dirname, "dist", htmlFileName),
-              htmlOutput);
-        }
-      });
-    }
+    new CleanWebpackPlugin(['dist']),
+    new ExtractTextPlugin('bundle[chunkhash].css'),
+    new HtmlWebpackPlugin({ title: 'Output Management' }),
   ]
 };
